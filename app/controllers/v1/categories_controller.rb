@@ -7,7 +7,10 @@ class V1::CategoriesController < ApplicationController
     #@categories = Product.joins(:category)#.where(name: "A")
    # @categories = Category.joins(:products).distinct
    respond_to do |format|
-    format.json { render json: @categories, include: :products }
+    format.json { render json: @categories, include: {
+      products: { only: [:id, :name] },
+      user: { only: [:id, :username] }
+    }}
     format.xml { render xml: @categories}
    end
     # render json: @categories, include: :products
