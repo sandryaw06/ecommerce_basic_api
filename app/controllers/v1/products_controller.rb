@@ -3,6 +3,7 @@ class V1::ProductsController < ApplicationController
   include CrudConcern
 
   before_action :find_product, only: [:update, :destroy]
+  before_action :authenticate_user!
 
 
   def index 

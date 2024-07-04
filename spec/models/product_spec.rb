@@ -1,6 +1,20 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :string
+#  category_id :bigint
+#  user_id     :integer
+#  code        :string
+#  stock       :integer          default(0)
+#  price       :integer          default(0)
+#
 require 'rails_helper'
 
-# frozen_string_literal: true
 
 RSpec.describe Product, type: :request do
 
