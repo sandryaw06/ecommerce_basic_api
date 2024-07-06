@@ -13,10 +13,15 @@
 #
 class Product < ApplicationRecord
 
-    #save
+    #save callbacks
     before_save :validate_product
     after_save :send_notification
     after_save :push_notification, if: :discount
+
+    #create callbacks
+    # before_create :validate_product
+    # after_create :send_notification
+    # after_create :push_notification, if: :discount
 
     belongs_to :category
     has_many :reviews
@@ -32,6 +37,21 @@ class Product < ApplicationRecord
 
     #own validations
     validate :code_validations
+
+    #add validations from Concerns class. It will add all methods there
+    validates_with ProductValidator
+
+
+    scope :all_products, -> { all}
+    scope :not_stock, -> { where(stock: nil)}
+    scope :availability, -> (availability=1) { where('stock >= ?', availability)}#.pluck(:id, :name, :stock, :price)}
+    scope :order_price_desc, -> {order('price DESC').pluck(:name, :price)}
+
+    scope :available_and_order, -> { availability.order_price_desc }
+
+    def self.top_5_available
+        self.availability.limit(5).select(:name, :price)
+    end
 
     def code_validations
         if !self.code.nil? && self.code.length > 4
@@ -51,9 +71,9 @@ class Product < ApplicationRecord
     def has_price?
         !self.price.nil? && self.price > 0
     end
-    private
 
-   
+
+    private
 
     def validate_product
         puts "\n\n\n>>> Un nuevo product se almacenara!!!"
