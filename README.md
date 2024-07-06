@@ -1,5 +1,19 @@
 # README
 
+
+* Validations in this project
+
+> Product validations:
+
+> own validations
+
+> Validatios by default:
+
+`validates_presence_of :attr, message: "mssg"`
+`validates_uniqueness_of :email, message: "The email should be unique"`
+`validates_length_of :members, :minimum => 1`
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

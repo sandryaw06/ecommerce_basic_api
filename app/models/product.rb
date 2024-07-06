@@ -24,9 +24,21 @@ class Product < ApplicationRecord
     
     # validates :price, length: {minimum:1, maximum:3}
     validates :price, length: { in: 1..3, message: "the price is outside the range"}, if: :has_price?
-
-    validates :name, presence: true, uniqueness: {message: "the name %{name} already exists"}
+    validates :name, 
+        presence:  {message: "the name is a mandatory parameter"}, 
+        uniqueness: {message: "the name %{value} already exists"}
     validates :category_id, presence: {message: "it is needed define a category"}
+    validates :code, uniqueness: {message: "the code %{value} should be unique"}
+
+    #own validations
+    validate :code_validations
+
+    def code_validations
+        if !self.code.nil? && self.code.length > 4
+            self.errors.add(:code, "The code should have btw 1 and 3 digits")
+        end 
+    
+    end
 
     def total
       self.price / 100
@@ -37,7 +49,7 @@ class Product < ApplicationRecord
     end
 
     def has_price?
-        !selft.price.nil? && self.price > 0
+        !self.price.nil? && self.price > 0
     end
     private
 
