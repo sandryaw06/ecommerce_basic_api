@@ -18,6 +18,9 @@ class Product < ApplicationRecord
     after_save :send_notification
     after_save :push_notification, if: :discount
 
+    before_update :code_notification_change, if: :code_changed?
+    after_update :low_stock_notification, if: :saved_change_to_stock?
+
     #create callbacks
     # before_create :validate_product
     # after_create :send_notification
@@ -88,5 +91,14 @@ class Product < ApplicationRecord
         puts "\n\n\n>>> Nuevo descuento disponible #{self.name}"
     end
 
+    def code_notification_change
+         puts "\n\n\n>>> El atributo code cambio de #{self.code_was} to #{self.code}"
+    end
+
+    def low_stock_notification
+        if self.stock <= 3
+            puts "\n\n\n>>> El producto #{self.name} tiene poco stock -> #{self.stock}"
+        end
+    end
     
 end
