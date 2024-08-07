@@ -57,12 +57,12 @@ if this doesn't exist it will create a new product with those parameters
 
 * Scopes
 > consultas pre-establecidas las cuales hemos definido en nuestros modelos
->encapsular consultas comunes en nuestros modelos, evitando repetir consultas comunes
->registra un nuevo metodo de clase para el objeto
->los scopes se pueden concatenar
+> encapsular consultas comunes en nuestros modelos, evitando repetir consultas comunes
+> registra un nuevo metodo de clase para el objeto
+> los scopes se pueden concatenar
 
 * Metodos de clase
->metodos de clase que tienen en su nombre `self.name`
+> metodos de clase que tienen en su nombre `self.name`
 
 * Scopes y metodos de clase
 > son lo mismo, scopes se usa para consultas sencillas, clases para consultas complejas, que es por lo q se separa en un metodo a parte
