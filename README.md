@@ -4,9 +4,18 @@
 
 ## Topics
 > Validations
+
 > Scopes
+
 > Controller Concerns
+
 > Model Concerns
+
+> Active Records
+
+> Custom Queries
+
+
 
 
 ## Validations in this project
