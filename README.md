@@ -2,7 +2,14 @@
 
 # This is a project to practive validations | scopes | BD queries etc
 
-* Validations in this project
+## Topics
+> Validations
+> Scopes
+> Controller Concerns
+> Model Concerns
+
+
+## Validations in this project
 
 > Product validations:
 
